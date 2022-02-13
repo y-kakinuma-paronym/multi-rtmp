@@ -21,8 +21,10 @@ COPY conf/nginx.conf /usr/local/nginx/conf/nginx.conf
 WORKDIR /var/local/www/hls
 RUN chmod 777 /var/local/www/hls
 
-# nginx実行
-# Dockerfileから実行するとコンテナが実行できないためとりあえず手動で実行する
-# CMD /usr/local/nginx/sbin/nginx
+# ffmpeg install
+WORKDIR /usr/local/src/
+RUN wget https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz \
+      && tar Jxvf ffmpeg-release-amd64-static.tar.xz \
+      && cp ffmpeg-*-amd64-static/ffmpeg /usr/bin/
 
-# 6 79
+WORKDIR /var/local/www/hls

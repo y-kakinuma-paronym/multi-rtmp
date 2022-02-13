@@ -2,29 +2,22 @@
 
 ## 内容物
 
-- `index.html`
-  - RTMPで配信しているビデオのストリームのHLSで視聴するためのHTMLファイル
-  - video.jsのsourceを都度都度変更する必要あり
+- `player1.html` & `player2.html`
+  - RTMPで配信しているビデオのストリームのHLSで視聴するためのHTMLファイル(動作確認用)
+  - `player1.html` と `player2.html` は別々のビデオソースを参照している
 - `rtmp/Dockerfile`
   - RTMPサーバのDockerfile
 - `rtmp/conf/nginx.conf`
   - Nginxの設定ファイル
-
-## コンテナ実行
-
-```
- docker run -ti -d -p 1935:1935 -p 8080:8080 --name "{コンテナ名}" {イメージ名}
-```
-
-## コンテナ実行後に行うこと
-
-- ffmpegインストール
-  - `apt install ffmpeg`
-- nginx実行
-  - `/usr/local/nginx/sbin/nginx`
+- `docker-compose.yml`
+  - 説明省略
+- `Makefile`
+  - よく使うdocker系のコマンドをまとめている
 
 ## RTMP中継のffmpegコマンド
 
+docker内で実行
+
 ```
-ffmpeg -re -i rtmp://localhost/live/stream1 -codec:v libx264 -g 3 -f flv rtmp://localhost/live2/stream1
+ffmpeg -re -i rtmp://localhost/live/hoge -codec:v libx264 -g 3 -f flv rtmp://localhost/stream1/hoge
 ```
