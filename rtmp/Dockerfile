@@ -18,6 +18,7 @@ RUN ./configure --with-http_ssl_module --add-module=../nginx-rtmp-module-afd350e
 RUN make
 RUN make install
 COPY conf/nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY conf/nginx_single.conf /usr/local/nginx/conf/nginx_single.conf
 WORKDIR /var/local/www/hls
 RUN chmod 777 /var/local/www/hls
 
