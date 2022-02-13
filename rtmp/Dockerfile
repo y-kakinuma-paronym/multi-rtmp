@@ -24,3 +24,5 @@ RUN chmod 777 /var/local/www/hls
 # nginx実行
 # Dockerfileから実行するとコンテナが実行できないためとりあえず手動で実行する
 # CMD /usr/local/nginx/sbin/nginx
+
+# 6 79
